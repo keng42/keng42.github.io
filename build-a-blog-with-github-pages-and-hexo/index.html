@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="null">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Keng42&#39;s blog">
+    <title>使用 Github Pages 和 Hexo 创建博客 - Keng42&#39;s blog</title>
+    <meta name="author" content="Keng Lee">
+    <meta name="description" content="Keng42&#39;s blog">
+    <link rel="icon" href="/assets/images/su.png">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://keng42.github.io">Keng42&#39;s blog</a>
+    </h1>
+    
+        <a class="header-right-picture" href="/#about">
+            <img class="header-picture" src="/assets/images/su.png"/>
+        </a>
+    
+    
+    <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+    <input type="text" id="st-search-inpu" maxlength="20" placeholder="搜索" />
+    </form>
+
+</header>
+            <nav id="sidebar" data-behavior="1">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/su.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name">Keng Lee</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-categories">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-tags">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-archives">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link st-search-show-outputs" href="/#search">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/#about">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="https://github.com/keng42" target="_blank">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/atom.xml">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main" data-behavior="1">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">使用 Github Pages 和 Hexo 创建博客</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Sat Jul 04 2015 17:37:47 GMT+0800">
+        Jul 04, 2015
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h2 id="搭建博客">搭建博客</h2><ol>
+<li>安装 Git 和 Node.js</li>
+<li>新建文件夹 <code>Github\hexo</code></li>
+<li><p>使用 Git Bash</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;hexo&gt;</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>hexo s</code> 并打开 <code>localhost:4000</code> 测试查看效果</p>
+</li>
+</ol>
+<h2 id="使用主题_tranquilpeak">使用主题 <code>tranquilpeak</code></h2><ol>
+<li>在<a href="https://hexo.io/themes/" target="_blank" rel="external">hexo themes</a>中选择主题并下载</li>
+<li>解压文件和子文件夹到 <code>GitHub\hexo\themes\tranquilpeak</code></li>
+<li>修改 <code>_config.yml</code> 内的 theme 设定</li>
+</ol>
+<h2 id="使用_Disqus_添加评论功能">使用 Disqus 添加评论功能</h2><ol>
+<li>在 <a href="https://disqus.com/" target="_blank" rel="external">Disqus</a> 中注册并获取 <code>shortname</code></li>
+<li>修改 <code>tranquilpeak\_config.yml</code> 内的 <code>disqus_shortname: &lt;shortname&gt;</code></li>
+</ol>
+<h2 id="使用_Swiftype_添加站内搜索">使用 Swiftype 添加站内搜索</h2><ol>
+<li>到<a href="https://swiftype.com" target="_blank" rel="external">swiftype</a>的网站注册账号并新建引擎</li>
+<li>配置引擎成功后得到 JS 代码将其添加到 <code>tranquilpeak\layout\ _partial</code> 目录下的 <code>footer.ejs</code> 文件</li>
+<li><p>在主题的 <code>_config.yml</code> 文件末尾添加：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swift_search:&#10;    enable: true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>hexo/source</code> 下建立一个 <code>search</code> 文件夹，并在其中新建一个 <code>index.md</code> 文件，其内容为：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layout: search</span><br><span class="line"><span class="header">title: search</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>tranquilpeak\layout\_partial\header.ejs</code> 末尾添加：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.swift_search.enable)&#123; %&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">class</span>=<span class="value">"search"</span> <span class="attribute">action</span>=<span class="value">"&lt;%- config.root %&gt;search/index.html"</span> <span class="attribute">method</span>=<span class="value">"get"</span> <span class="attribute">accept-charset</span>=<span class="value">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"st-search-inpu"</span> <span class="attribute">maxlength</span>=<span class="value">"20"</span> <span class="attribute">placeholder</span>=<span class="value">"搜索"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>layout\ _partial\search.ejs</code> 替换为以下内容（用于控制结果的显示样式）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span>(theme.swift_search.enable) &#123; %&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">div</span>  <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">class</span>=<span class="value">"page"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"st-results-container"</span> <span class="attribute">style</span>=<span class="value">"width:70%; margin:1.5em auto"</span>&gt;</span>正在加载搜索结果，请稍等。<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line"><span class="class">.st-result-text</span> <span class="rules">&#123;</span><br><span class="line">     <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#fafafa</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">0.5em</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">-webkit-transition</span>:<span class="value"> border-left <span class="number">0.45s</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">-moz-transition</span>:<span class="value"> border-left <span class="number">0.45s</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">-o-transition</span>:<span class="value"> border-left <span class="number">0.45s</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">-ms-transition</span>:<span class="value"> border-left <span class="number">0.45s</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">transition</span>:<span class="value"> border-left <span class="number">0.45s</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.5em</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">media</span> only screen and (min-width: <span class="number">768px</span>) </span>&#123;</span><br><span class="line">  <span class="class">.st-result-text</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">1em</span></span></span>;</span><br><span class="line">      &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="rule"><span class="attribute">.st-result-text</span>:<span class="value">hover &#123;</span><br><span class="line">      border-left: <span class="number">0.5em</span> solid <span class="hexcolor">#ea6753</span></span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="class">.st-result-text</span> <span class="tag">h3</span> <span class="tag">a</span><span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2ca6cb</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">1.5</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">22px</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line"><span class="class">.st-snippet</span> <span class="tag">em</span> <span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> bold</span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#ea6753</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>参考：<br><a href="https://hexo.io/zh-cn/docs" target="_blank" rel="external">Hexo</a><br><a href="https://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="external">使用GitHub和Hexo搭建免费静态Blog</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a><br><a href="http://drunkevil.com/2015/04/08/swiftype-search-engine-for-hexo/" target="_blank" rel="external">Hexo静态博客添加站内搜索—Swiftype</a></p>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/教程/">教程</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/build-a-blog-with-github-pages-and-hexo/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/build-a-blog-with-github-pages-and-hexo/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/build-a-blog-with-github-pages-and-hexo/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+	<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','tBkhvQXgNBHdUUAfxD_Y','2.0.0');
+</script>
+
+    <span class="copyrights">
+        Copyrights &copy; 2015 Keng Lee. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/build-a-blog-with-github-pages-and-hexo/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/build-a-blog-with-github-pages-and-hexo/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/build-a-blog-with-github-pages-and-hexo/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/su.png"/>
+        
+            <h4 id="about-card-name">Keng Lee</h4>
+        
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                广州
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'keng42';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+
+</html>
