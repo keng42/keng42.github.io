@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="null">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Keng42&#39;s blog">
+    <title>Activity 切换动画：从卡片放大/缩小到卡片 - Keng42&#39;s blog</title>
+    <meta name="author" content="Keng Lee">
+    <meta name="description" content="Keng42&#39;s blog">
+    <link rel="icon" href="/assets/images/su.png">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://keng42.github.io">Keng42&#39;s blog</a>
+    </h1>
+    
+        <a class="header-right-picture" href="/#about">
+            <img class="header-picture" src="/assets/images/su.png"/>
+        </a>
+    
+    
+    <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+    <input type="text" id="st-search-inpu" maxlength="20" placeholder="搜索" />
+    </form>
+
+</header>
+            <nav id="sidebar" data-behavior="1">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/su.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name">Keng Lee</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-categories">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-tags">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-archives">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link st-search-show-outputs" href="/#search">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/#about">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="https://github.com/keng42" target="_blank">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/atom.xml">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main" data-behavior="1">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">Activity 切换动画：从卡片放大/缩小到卡片</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Mon Jul 13 2015 11:15:45 GMT+0800">
+        Jul 13, 2015
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/加工/">加工</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h1 id="定义：">定义：</h1><p>卡片列表 ListActivity<br>卡片详细 CardActivity  </p>
+<h1 id="步骤：">步骤：</h1><ol>
+<li>在 ListActivity 中获取被点击卡片的位置（左上角坐标和宽高）并传递给 CardActivity</li>
+<li>在 ListActivity 去除默认的动画</li>
+<li>在 CardActivity 中获取卡片的位置和 CardActivity 主要 view 的位置，并计算缩放值</li>
+<li>在 CardActivity 的 <code>onCreate()</code> 中启动放大动画</li>
+<li>重写 CardActivity 的关闭方法，先启动缩小动画然后再关闭 Activity 和去除默认动画</li>
+<li>将 CardActivity 的 <code>windowBackground</code> 设为透明</li>
+</ol>
+<h1 id="代码：">代码：</h1><p>获取卡片的位置，有了卡片的左上角坐标和宽高就可以明确知道卡片的具体位置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 左上角坐标</span></span><br><span class="line"><span class="keyword">int</span>[] location = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">view.getLocationOnScreen(location);</span><br><span class="line"><span class="comment">// 宽高</span></span><br><span class="line"><span class="keyword">int</span> width = view.getWidth();</span><br><span class="line"><span class="keyword">int</span> height = view.getHeight();</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">去除默认动画</span><br><span class="line">```java</span><br><span class="line"><span class="comment">// startActivity() 或 finish() 之后</span></span><br><span class="line">overridePendingTransition(<span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>进入动画方法，在 <code>onCreate()</code> 中调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">enterAnim</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取从上一页传来的位置信息(左上角坐标和卡片尺寸)</span></span><br><span class="line">    Intent intent = getIntent();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> top = intent.getIntExtra(<span class="string">"top"</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> left = intent.getIntExtra(<span class="string">"left"</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> width = intent.getIntExtra(<span class="string">"width"</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> height = intent.getIntExtra(<span class="string">"height"</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 整个页面的 view 对象(包括 Toolbar)</span></span><br><span class="line">    View rootView = findViewById(android.R.id.content);</span><br><span class="line">    <span class="comment">// 获取屏幕的尺寸（不包括虚拟按键部分）</span></span><br><span class="line">    DisplayMetrics dm = getResources().getDisplayMetrics();</span><br><span class="line">    <span class="keyword">int</span> w = dm.widthPixels;</span><br><span class="line">    <span class="keyword">int</span> h = dm.heightPixels; <span class="comment">// StatusBar+rootView</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置水平和竖直方向的偏移量</span></span><br><span class="line">    rootView.setPivotX(<span class="number">0</span>);</span><br><span class="line">    rootView.setPivotY(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算并设置缩放比例</span></span><br><span class="line">    mScaleX = (width * <span class="number">1.0f</span>) / w;</span><br><span class="line">    mScaleY = (height * <span class="number">1.0f</span>) / (h - getStatusBarHeight());</span><br><span class="line">    rootView.setScaleX(mScaleX);</span><br><span class="line">    rootView.setScaleY(mScaleY);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算并设置水平和竖直方向的移动距离——左上角坐标</span></span><br><span class="line">    mLeft = left;</span><br><span class="line">    mTop = top - getStatusBarHeight();</span><br><span class="line">    rootView.setTranslationX(mLeft);</span><br><span class="line">    rootView.setTranslationY(mTop);</span><br><span class="line"></span><br><span class="line">    rootView.animate().scaleX(<span class="number">1</span>).scaleY(<span class="number">1</span>)</span><br><span class="line">            .translationX(<span class="number">0</span>).translationY(<span class="number">0</span>)</span><br><span class="line">            .setDuration(getResources().getInteger(</span><br><span class="line">                    android.R.integer.config_mediumAnimTime))</span><br><span class="line">            .setInterpolator(<span class="keyword">new</span> DecelerateInterpolator()).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>退出 Activity 时先执行退出动画，动画结束后才退出 Activity ；通过重写相关函数来调用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">exitAnim(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        finish();</span><br><span class="line">        overridePendingTransition(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>退出动画方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">exitAnim</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">    View rootView = findViewById(android.R.id.content);</span><br><span class="line"></span><br><span class="line">    rootView.setPivotX(<span class="number">0</span>);</span><br><span class="line">    rootView.setPivotY(<span class="number">0</span>);</span><br><span class="line">    rootView.setScaleX(<span class="number">1</span>);</span><br><span class="line">    rootView.setPivotY(<span class="number">1</span>);</span><br><span class="line">    rootView.setTranslationX(<span class="number">0</span>);</span><br><span class="line">    rootView.setTranslationY(getStatusBarHeight());</span><br><span class="line"></span><br><span class="line">    rootView.animate().scaleX(mScaleX).scaleY(mScaleY)</span><br><span class="line">            .translationX(mLeft).translationY(mTop)</span><br><span class="line">            .withEndAction(runnable) <span class="comment">// 在动画执行结束时才运行</span></span><br><span class="line">            .setDuration(getResources().getInteger(</span><br><span class="line">                    android.R.integer.config_mediumAnimTime))</span><br><span class="line">            .setInterpolator(<span class="keyword">new</span> DecelerateInterpolator()).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将 CardActivity 的 <code>windowBackground</code> 设置为透明：在 <code>AndroidManifest.xml</code> 中设置 CardActivity 的主题<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">name</span>=<span class="value">"TranslucentTheme"</span> <span class="attribute">parent</span>=<span class="value">"AppTheme"</span>&gt;</span><span class="css"></span><br><span class="line">    &lt;<span class="tag">item</span> <span class="tag">name</span>="<span class="rule"><span class="attribute">android</span>:<span class="value">windowIsTranslucent<span class="string">"&gt;true&lt;/item&gt;</span><br><span class="line">    &lt;item name="</span>android:windowBackground<span class="string">"&gt;@android:color/transparent&lt;/item&gt;</span><br><span class="line">    &lt;item name="</span>android:windowContentOverlay<span class="string">"&gt;@null&lt;/item&gt;</span><br><span class="line"></span></span></span></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="参考：">参考：</h1><p><a href="http://blog.csdn.net/jxxfzgy/article/details/44515351" target="_blank" rel="external">Activity 切换动画（小米图库列表进入详情页，图片从固定位置放大进入，缩小退出）</a></p>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android/">Android</a> <a class="tag tag--primary tag--small t-link" href="/tags/Animation/">Animation</a> <a class="tag tag--primary tag--small t-link" href="/tags/教程/">教程</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gradle-guide/" data-tooltip="Gradle 入门教程">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/activity-zoom/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/activity-zoom/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/activity-zoom/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+	<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','tBkhvQXgNBHdUUAfxD_Y','2.0.0');
+</script>
+
+    <span class="copyrights">
+        Copyrights &copy; 2015 Keng Lee. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gradle-guide/" data-tooltip="Gradle 入门教程">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/activity-zoom/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/activity-zoom/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/activity-zoom/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/su.png"/>
+        
+            <h4 id="about-card-name">Keng Lee</h4>
+        
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                广州
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'keng42';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+
+</html>
