@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Keng42&#39;s blog">
-    <title>Atom 使用记录 - Keng42&#39;s blog</title>
+    <title>使用 Android Studio 的 QAPlug 插件对代码进行优化的记录 - Keng42&#39;s blog</title>
     <meta name="author" content="Keng Lee">
     <meta name="description" content="Keng42&#39;s blog">
     <link rel="icon" href="/assets/images/su.png">
@@ -137,11 +137,11 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">Atom 使用记录</h1>
+        <h1 class="post-title" itemprop="headline">使用 Android Studio 的 QAPlug 插件对代码进行优化的记录</h1>
     
     <div class="post-meta">
-    <time  itemprop="datePublished" content="Wed Jul 15 2015 16:03:42 GMT+0800">
-        Jul 15, 2015
+    <time  itemprop="datePublished" content="Thu Jul 16 2015 00:54:42 GMT+0800">
+        Jul 16, 2015
     </time>
     
         <span>in </span>
@@ -154,69 +154,54 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <h1 id="Package">Package</h1><h3 id="手动安装包">手动安装包</h3><p>从 Github 下载 zip 文件，解压到 <code>%user%\.atom\packages</code> 下，重启 Atom</p>
-<h3 id="格式化代码_atom-beautify">格式化代码 <code>atom-beautify</code></h3><blockquote>
-<p>包括 HTML CSS JS Java Markdown<br>手动安装后需要在项目目录安装缺失的东西<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> cache clean</span><br><span class="line"><span class="built_in">npm</span> install</span><br></pre></td></tr></table></figure></p>
+        <h1 id="Efficiency_效率">Efficiency 效率</h1><h3 id="Hide_Utility_Class_Constructor_Check">Hide Utility Class Constructor Check</h3><blockquote>
+<p>Make sure that utility classes (classes that contain only static methods) do not have a public constructor.  </p>
 </blockquote>
-<h1 id="快捷键">快捷键</h1><h3 id="自定义快捷键">自定义快捷键</h3><p>为了和 Android Studio 保持一致  </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Action</th>
-<th style="text-align:left">Key</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Show/hide Tree-View</td>
-<td style="text-align:left"><code>ctrl+k,ctrl+b</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Markdown preview</td>
-<td style="text-align:left"><code>ctrl+shift+m</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Settings</td>
-<td style="text-align:left"><code>ctrl+ ,</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Add/remove a selection</td>
-<td style="text-align:left"><code>Alt + Shift + Mouse Click</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Select/unselect the next occurrence</td>
-<td style="text-align:left"><code>Alt + J / Shift + Alt + J</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Select all occurrences</td>
-<td style="text-align:left"><code>Shift + Ctrl + Alt + J</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Remove all selections</td>
-<td style="text-align:left"><code>Esc</code></td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight cson"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'atom-text-editor'</span>:</span><br><span class="line">  <span class="string">'ctrl-alt-l'</span>: <span class="string">'atom-beautify:beautify-editor'</span></span><br><span class="line">  <span class="string">'alt-l'</span>: <span class="string">'editor:split-selections-into-lines'</span></span><br><span class="line">  <span class="string">'alt-j'</span>: <span class="string">'find-and-replace:select-next'</span></span><br><span class="line">  <span class="string">'ctrl-alt-shift-j'</span>: <span class="string">'find-and-replace:select-all'</span></span><br></pre></td></tr></table></figure>
-<h1 id="现在的缺点">现在的缺点</h1><ul>
-<li>体积太大，解压后211MB</li>
-<li>时不时会卡死，CPU 彪到 100%</li>
-<li>首次启动太久，现在目测需要3秒</li>
-<li>1.0.2 使用自带的包安装工具安装会出错，目测是墙的问题</li>
-</ul>
-<h1 id="优点">优点</h1><ul>
-<li>开源</li>
-<li>自带 Github Markdown 预览</li>
-<li>超方便的快速补完</li>
-<li>中文支持比较好</li>
-<li>可自定义程度很高</li>
-</ul>
-<h1 id="其他问题记录">其他问题记录</h1><ul>
-<li>问题：默认保存文件时，会弹出警告框 <code>你不能使用该程序打开此文件...</code><blockquote>
-<p>原因：默认是 config 项目，路径是 <code>atom://config</code><br>解决：添加一个新项目并移除 config 项目</p>
+<p><a href="http://stackoverflow.com/questions/14398747/hide-utility-class-constructor-utility-classes-should-not-have-a-public-or-def" target="_blank" rel="external">改进</a>：给该工具类增加 <code>final</code> 修饰符，同时声明一个私有的无参构造函数。<br>原因：声明一个私有的无参构造函数，是为了该类无法被子类继承，对于工具类来说这是比较合适的。然而如果不加 <code>final</code> 也并没有什么关系，但加上了也并没有什么坏处。</p>
+<h3 id="SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION</h3><blockquote>
+<p>The method seems to be building a String using concatenation in a loop. In each iteration, the String is converted to a StringBuffer/StringBuilder, appended to, and converted back to a String. This can lead to a cost quadratic in the number of iterations, as the growing string is recopied in each iteration.</p>
 </blockquote>
-</li>
-</ul>
+<p>改进：使用 StringBuffer(线程安全，效率低)/StringBuilder(线程不安全，效率高)<br>原因：每次迭代都会新建一个 String ，无疑会增加成本  </p>
+<h3 id="SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC</h3><blockquote>
+<p>This class is an inner class, but does not use its embedded reference to the object which created it.  This reference makes the instances of the class larger, and may keep the reference to the creator object alive longer than necessary.  If possible, the class should be made static.</p>
+</blockquote>
+<p>改进：若非必要，使用静态内部类</p>
+<h1 id="Maintainability_可维护性">Maintainability 可维护性</h1><h3 id="Anon_Inner_Length_Check">Anon Inner Length Check</h3><blockquote>
+<p>Checks for long anonymous inner classes.</p>
+</blockquote>
+<p>改进：匿名内部类不超过 20 行。</p>
+<h3 id="Avoid_Duplicate_Literals">Avoid Duplicate Literals</h3><blockquote>
+<p>Code containing duplicate String literals can usually be improved by declaring the String as a constant field.</p>
+</blockquote>
+<p>改进：多次使用的字符串，使用常量来替代<br>原因：要修改时只需要修改一次，不会漏掉</p>
+<h3 id="Collapsible_If_Statements">Collapsible If Statements</h3><blockquote>
+<p>Sometimes two ‘if’ statements can be consolidated by separating their conditions with a boolean short-circuit operator.</p>
+</blockquote>
+<p>改进：嵌套的 if 语句可考虑是否可合并</p>
+<h3 id="Unused_Formal_Parameter">Unused Formal Parameter</h3><blockquote>
+<p>Avoid passing parameters to methods or constructors and then not using those parameters.</p>
+</blockquote>
+<p>改进：避免传递无用的参数</p>
+<h3 id="Visibility_Modifier_Check">Visibility Modifier Check</h3><blockquote>
+<p>Checks visibility of class members. Only static final members may be public; other class members must be private unless property protectedAllowed or packageAllowed is set.</p>
+</blockquote>
+<p>改进：只有静态常量可用 public 修饰，其余的一般都用 private 修饰</p>
+<h1 id="Reliability_可靠性">Reliability 可靠性</h1><h3 id="FL_MATH_USING_FLOAT_PRECISION">FL_MATH_USING_FLOAT_PRECISION</h3><blockquote>
+<p>The method performs math operations using floating point precision. Floating point precision is very imprecise. For example, 16777216.0f + 1.0f = 16777216.0f. Consider using double math instead.</p>
+</blockquote>
+<p>改进：避免使用 float，使用 double</p>
+<h3 id="Design_For_Extension_Check">Design For Extension Check</h3><blockquote>
+<p>Checks that classes are designed for inheritance.</p>
+</blockquote>
+<p><a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="external">改进</a>：只有在明确了解该类不会被继承或处于安全考虑时才使用 final 修饰符。只有明确该方法禁止在子类中被重写时才使用 final 修饰符，否则尽量不要用。因为在新版本的 Java 中这种情况已经不需要考虑效率问题了。</p>
+<h3 id="Magic_Number_Check">Magic Number Check</h3><blockquote>
+<p>Checks for magic numbers.</p>
+</blockquote>
+<p>改进：避免直接使用数字</p>
+<h1 id="Usability_可用性">Usability 可用性</h1><h3 id="Avoid_Print_Stack_Trace">Avoid Print Stack Trace</h3><blockquote>
+<p>Avoid printStackTrace(); use a logger call instead.</p>
+</blockquote>
+<p><a href="http://stackoverflow.com/questions/10477607/avoid-printstacktrace-use-a-logger-call-instead" target="_blank" rel="external">改进</a>：使用 <code>Log.e(MyApp.TAG, &quot;&quot;, e);</code></p>
 
         
             
@@ -227,7 +212,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Atom/">Atom</a> <a class="tag tag--primary tag--small t-link" href="/tags/折腾/">折腾</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android-Studio/">Android Studio</a> <a class="tag tag--primary tag--small t-link" href="/tags/Code-Style/">Code Style</a> <a class="tag tag--primary tag--small t-link" href="/tags/Java/">Java</a> <a class="tag tag--primary tag--small t-link" href="/tags/QAPlug/">QAPlug</a> <a class="tag tag--primary tag--small t-link" href="/tags/优化/">优化</a>
 
             </div>
         
@@ -236,7 +221,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/code-analysis/"  data-tooltip="使用 Android Studio 的 QAPlug 插件对代码进行优化的记录">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -244,7 +229,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/activity-zoom/" data-tooltip="Activity 切换动画：从卡片放大/缩小到卡片">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/atom-0/" data-tooltip="Atom 使用记录">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -254,17 +239,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/atom-0/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/code-analysis/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/atom-0/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/code-analysis/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/atom-0/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/code-analysis/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -312,7 +297,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/code-analysis/"  data-tooltip="使用 Android Studio 的 QAPlug 插件对代码进行优化的记录">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -320,7 +305,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/activity-zoom/" data-tooltip="Activity 切换动画：从卡片放大/缩小到卡片">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/atom-0/" data-tooltip="Atom 使用记录">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -330,17 +315,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/atom-0/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/code-analysis/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/atom-0/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/code-analysis/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/atom-0/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/code-analysis/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
