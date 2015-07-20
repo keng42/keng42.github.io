@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="null">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Keng42&#39;s blog">
+    <title>Android 屏幕相关 - Keng42&#39;s blog</title>
+    <meta name="author" content="Keng Lee">
+    <meta name="description" content="Keng42&#39;s blog">
+    <link rel="icon" href="/assets/images/su.png">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://keng42.github.io">Keng42&#39;s blog</a>
+    </h1>
+    
+        <a class="header-right-picture" href="/#about">
+            <img class="header-picture" src="/assets/images/su.png"/>
+        </a>
+    
+    
+    <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+    <input type="text" id="st-search-inpu" maxlength="20" placeholder="搜索" />
+    </form>
+
+</header>
+            <nav id="sidebar" data-behavior="1">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/su.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name">Keng Lee</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-categories">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-tags">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/all-archives">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link st-search-show-outputs" href="/#search">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/#about">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="https://github.com/keng42" target="_blank">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link " href="/atom.xml">
+            
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main" data-behavior="1">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">Android 屏幕相关</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Mon Jul 20 2015 12:30:42 GMT+0800">
+        Jul 20, 2015
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/代码/">代码</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h1 id="屏幕尺寸">屏幕尺寸</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DisplayMetrics dm = getResources().getDisplayMetrics();</span><br><span class="line"><span class="keyword">int</span> screenWidth = dm.widthPixels;</span><br><span class="line"><span class="keyword">int</span> screenHeight = dm.heightPixels;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绘制完成后</span></span><br><span class="line">Point point = <span class="keyword">new</span> Point();</span><br><span class="line">getWindowManager().getDefaultDisplay().getSize(point);</span><br><span class="line"><span class="keyword">int</span> screenWidth = point.x;</span><br><span class="line"><span class="keyword">int</span> screenHeight = point.y;</span><br></pre></td></tr></table></figure>
+<h1 id="状态栏的高度">状态栏的高度</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> statusBarHeight = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> resourceId = getResources().getIdentifier(</span><br><span class="line">        <span class="string">"status_bar_height"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</span><br><span class="line"><span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    statusBarHeight = getResources().getDimensionPixelSize(resourceId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绘制完成后</span></span><br><span class="line">Rect frame = <span class="keyword">new</span> Rect();</span><br><span class="line">getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);</span><br><span class="line"><span class="keyword">int</span> statusBarHeight = frame.top;</span><br></pre></td></tr></table></figure>
+<h1 id="工具栏的高度">工具栏的高度</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TypedValue tv = <span class="keyword">new</span> TypedValue();</span><br><span class="line"><span class="keyword">int</span> actionBarSize = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, <span class="keyword">true</span>)) &#123;</span><br><span class="line">    actionBarSize = TypedValue.complexToDimensionPixelSize(</span><br><span class="line">            tv.data, getResources().getDisplayMetrics());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绘制完成后</span></span><br><span class="line">ActionBar actionBar = getSupportActionBar();</span><br><span class="line"><span class="keyword">int</span> actionBarHeight = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (actionBar != <span class="keyword">null</span>) &#123;</span><br><span class="line">    actionBarHeight = actionBar.getHeight();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绘制完成后</span></span><br><span class="line"><span class="keyword">int</span> actionBarHeight = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();</span><br></pre></td></tr></table></figure>
+<h1 id="几个单位"><a href="https://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android" target="_blank" rel="external">几个单位</a></h1><p>px  pixel 像素<br>dpi dots per inch 每英寸点数<br>ppi pixels per inch 每英寸像素<br>dip density independent pixel 密度无关像素<br>dp == dip<br>这么说，px 是真实的物理单位，对安卓手机来讲标准量化的 dpi 有6种（当然还有其他的），分别是 ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxhdpi, 以 mdpi == 160 为标准，其余的按倍数缩放，分别是 0.75, 1, 1.5, 2, 3, 4, 这些倍数就是 logical density 逻辑密度，这样就可以根据逻辑密度来进行 px 和 dp 的换算—— px = dp * density。<br>Android 里可以通过这个方法来获取相关的信息，包括 density, xdpi, ydpi, widthPixels, heightPixels…  </p>
+<p><strong>总的来说，字体大小用 sp, 其余的大小用 dp</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DisplayMetrics metrics = <span class="keyword">new</span> DisplayMetrics();</span><br><span class="line">getWindowManager().getDefaultDisplay().getMetrics(metrics);</span><br></pre></td></tr></table></figure>
+<h1 id="dp_和_px_相互转化">dp 和 px 相互转化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">float</span> scale = getResources().getDisplayMetrics().density;</span><br><span class="line"><span class="keyword">int</span> px = (<span class="keyword">int</span>) (dipValue * scale + <span class="number">0.5</span>D);</span><br><span class="line"><span class="keyword">int</span> dp = (<span class="keyword">int</span>) (pxValue / scale + <span class="number">0.5</span>D);</span><br></pre></td></tr></table></figure>
+<h1 id="监听横竖屏切换">监听横竖屏切换</h1><ol>
+<li><p>在 <code>AndroidManifest.xml</code> 中的 Activity 配置中添加 <code>android:configChanges=&quot;orientation|screenSize&quot;</code></p>
+<blockquote>
+<p>从 Andoid 3.2(API level 13) 开始，横竖屏切换的时候会改变屏幕尺寸，所以为了避免在切换屏幕时重启 Runtime，除了 <code>orientation</code> 之外还要添加 <code>screenSize</code>。另外，如果你的 targetSdkVersion &lt;= 12，那么，无论什么版本的安卓都不会在在切换屏幕时重启 Runtime。</p>
+</blockquote>
+</li>
+<li><p>重写 <code>onConfigurationChanged()</code> 方法</p>
+</li>
+</ol>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android/">Android</a> <a class="tag tag--primary tag--small t-link" href="/tags/屏幕/">屏幕</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/android-studio-to-github/"  data-tooltip="在 Android Studio 同步项目到 Github">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/code-analysis/" data-tooltip="使用 Android Studio 的 QAPlug 插件对代码进行优化的记录">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/android-screen/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/android-screen/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/android-screen/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+	<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','tBkhvQXgNBHdUUAfxD_Y','2.0.0');
+</script>
+
+    <span class="copyrights">
+        Copyrights &copy; 2015 Keng Lee. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/android-studio-to-github/"  data-tooltip="在 Android Studio 同步项目到 Github">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/code-analysis/" data-tooltip="使用 Android Studio 的 QAPlug 插件对代码进行优化的记录">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/android-screen/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/android-screen/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/android-screen/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/su.png"/>
+        
+            <h4 id="about-card-name">Keng Lee</h4>
+        
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                广州
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'keng42';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+
+</html>

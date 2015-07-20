@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Keng42&#39;s blog">
-    <title>使用 Android Studio 的 QAPlug 插件对代码进行优化的记录 - Keng42&#39;s blog</title>
+    <title>Android Studio 插件 - Keng42&#39;s blog</title>
     <meta name="author" content="Keng Lee">
     <meta name="description" content="Keng42&#39;s blog">
     <link rel="icon" href="/assets/images/su.png">
@@ -137,11 +137,11 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">使用 Android Studio 的 QAPlug 插件对代码进行优化的记录</h1>
+        <h1 class="post-title" itemprop="headline">Android Studio 插件</h1>
     
     <div class="post-meta">
-    <time  itemprop="datePublished" content="Thu Jul 16 2015 00:54:42 GMT+0800">
-        Jul 16, 2015
+    <time  itemprop="datePublished" content="Mon Jul 20 2015 13:47:42 GMT+0800">
+        Jul 20, 2015
     </time>
     
         <span>in </span>
@@ -154,54 +154,21 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <h1 id="Efficiency_效率">Efficiency 效率</h1><h3 id="Hide_Utility_Class_Constructor_Check">Hide Utility Class Constructor Check</h3><blockquote>
-<p>Make sure that utility classes (classes that contain only static methods) do not have a public constructor.  </p>
+        <h1 id="常用插件">常用插件</h1><blockquote>
+<p>安装插件：File -&gt; Settings -&gt; Plugins -&gt; Browser Repositories<br>插件设置：File -&gt; Settings -&gt; Other Settings  </p>
 </blockquote>
-<p><a href="http://stackoverflow.com/questions/14398747/hide-utility-class-constructor-utility-classes-should-not-have-a-public-or-def" target="_blank" rel="external">改进</a>：给该工具类增加 <code>final</code> 修饰符，同时声明一个私有的无参构造函数。<br>原因：声明一个私有的无参构造函数，是为了该类无法被子类继承，对于工具类来说这是比较合适的。然而如果不加 <code>final</code> 也并没有什么关系，但加上了也并没有什么坏处。</p>
-<h3 id="SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION</h3><blockquote>
-<p>The method seems to be building a String using concatenation in a loop. In each iteration, the String is converted to a StringBuffer/StringBuilder, appended to, and converted back to a String. This can lead to a cost quadratic in the number of iterations, as the growing string is recopied in each iteration.</p>
+<h2 id="Statistic"><a href="http://plugins.jetbrains.com/plugin/4509" target="_blank" rel="external">Statistic</a></h2><p>显示项目的统计数值。包括源代码行数、注释和空白行数，各种文件的大小。  </p>
+<blockquote>
+<p>Excluded directories 排除项目自动生成的文件和导入的类库文件 <code>/app/build/</code> <code>/app/libs</code></p>
 </blockquote>
-<p>改进：使用 StringBuffer(线程安全，效率低)/StringBuilder(线程不安全，效率高)<br>原因：每次迭代都会新建一个 String ，无疑会增加成本  </p>
-<h3 id="SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC</h3><blockquote>
-<p>This class is an inner class, but does not use its embedded reference to the object which created it.  This reference makes the instances of the class larger, and may keep the reference to the creator object alive longer than necessary.  If possible, the class should be made static.</p>
+<h2 id="QAPlug"><a href="http://qaplug.com" target="_blank" rel="external">QAPlug</a></h2><p>使用 CheckStyle, FindBugs, PMD 来提高你的安卓代码质量<br>使用介绍： <a href="http://www.devtf.cn/?p=790" target="_blank" rel="external">如何提高你的代码质量</a> <a href="http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/" target="_blank" rel="external">How to improve quality and syntax of your Android code</a><br>使用记录： <a href="https://keng42.github.io/code-analysis/">使用 Android Studio 的 QAPlug 插件对代码进行优化的记录</a>  </p>
+<h2 id="ButterKnife_Zelezny"><a href="https://github.com/avast/android-butterknife-zelezny" target="_blank" rel="external">ButterKnife Zelezny</a></h2><p>根据 layout 文件自动生成 ButterKnife 视图注入代码，告别没完没了的 <code>findViewById()</code>  </p>
+<blockquote>
+<p>记得添加依赖 <code>compile &#39;com.jakewharton:butterknife:7.0.1&#39;</code></p>
 </blockquote>
-<p>改进：若非必要，使用静态内部类</p>
-<h1 id="Maintainability_可维护性">Maintainability 可维护性</h1><h3 id="Anon_Inner_Length_Check">Anon Inner Length Check</h3><blockquote>
-<p>Checks for long anonymous inner classes.</p>
-</blockquote>
-<p>改进：匿名内部类不超过 20 行。</p>
-<h3 id="Avoid_Duplicate_Literals">Avoid Duplicate Literals</h3><blockquote>
-<p>Code containing duplicate String literals can usually be improved by declaring the String as a constant field.</p>
-</blockquote>
-<p>改进：多次使用的字符串，使用常量来替代<br>原因：要修改时只需要修改一次，不会漏掉</p>
-<h3 id="Collapsible_If_Statements">Collapsible If Statements</h3><blockquote>
-<p>Sometimes two ‘if’ statements can be consolidated by separating their conditions with a boolean short-circuit operator.</p>
-</blockquote>
-<p>改进：嵌套的 if 语句可考虑是否可合并</p>
-<h3 id="Unused_Formal_Parameter">Unused Formal Parameter</h3><blockquote>
-<p>Avoid passing parameters to methods or constructors and then not using those parameters.</p>
-</blockquote>
-<p>改进：避免传递无用的参数</p>
-<h3 id="Visibility_Modifier_Check">Visibility Modifier Check</h3><blockquote>
-<p>Checks visibility of class members. Only static final members may be public; other class members must be private unless property protectedAllowed or packageAllowed is set.</p>
-</blockquote>
-<p>改进：只有静态常量可用 public 修饰，其余的一般都用 private 修饰</p>
-<h1 id="Reliability_可靠性">Reliability 可靠性</h1><h3 id="FL_MATH_USING_FLOAT_PRECISION">FL_MATH_USING_FLOAT_PRECISION</h3><blockquote>
-<p>The method performs math operations using floating point precision. Floating point precision is very imprecise. For example, 16777216.0f + 1.0f = 16777216.0f. Consider using double math instead.</p>
-</blockquote>
-<p>改进：避免使用 float，使用 double</p>
-<h3 id="Design_For_Extension_Check">Design For Extension Check</h3><blockquote>
-<p>Checks that classes are designed for inheritance.</p>
-</blockquote>
-<p><a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="external">改进</a>：只有在明确了解该类不会被继承或处于安全考虑时才使用 final 修饰符。只有明确该方法禁止在子类中被重写时才使用 final 修饰符，否则尽量不要用。因为在新版本的 Java 中这种情况已经不需要考虑效率问题了。</p>
-<h3 id="Magic_Number_Check">Magic Number Check</h3><blockquote>
-<p>Checks for magic numbers.</p>
-</blockquote>
-<p>改进：避免直接使用数字</p>
-<h1 id="Usability_可用性">Usability 可用性</h1><h3 id="Avoid_Print_Stack_Trace">Avoid Print Stack Trace</h3><blockquote>
-<p>Avoid printStackTrace(); use a logger call instead.</p>
-</blockquote>
-<p><a href="http://stackoverflow.com/questions/10477607/avoid-printstacktrace-use-a-logger-call-instead" target="_blank" rel="external">改进</a>：使用 <code>Log.e(MyApp.TAG, &quot;&quot;, e);</code></p>
+<h2 id="GsonFormat"><a href="https://github.com/zzz40500/GsonFormat" target="_blank" rel="external">GsonFormat</a></h2><p>根据 JSON 字符串生成实体类  </p>
+<h2 id="Android_strings-xml_Tools">Android strings.xml Tools</h2><p>字符串排序和多语言管理工具</p>
+<h1 id="参考">参考</h1><p><a href="http://stormzhang.com/android/2015/05/26/android-tools/" target="_blank" rel="external">推荐几个非常有用的工具</a>  </p>
 
         
             
@@ -212,7 +179,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Android-Studio/">Android Studio</a> <a class="tag tag--primary tag--small t-link" href="/tags/Code-Style/">Code Style</a> <a class="tag tag--primary tag--small t-link" href="/tags/Java/">Java</a> <a class="tag tag--primary tag--small t-link" href="/tags/QAPlug/">QAPlug</a> <a class="tag tag--primary tag--small t-link" href="/tags/优化/">优化</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android-Studio/">Android Studio</a> <a class="tag tag--primary tag--small t-link" href="/tags/代码统计/">代码统计</a> <a class="tag tag--primary tag--small t-link" href="/tags/代码质量/">代码质量</a> <a class="tag tag--primary tag--small t-link" href="/tags/插件/">插件</a>
 
             </div>
         
@@ -221,7 +188,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/android-screen/"  data-tooltip="Android 屏幕相关">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -229,7 +196,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/atom-0/" data-tooltip="Atom 使用记录">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/android-studio-to-github/" data-tooltip="在 Android Studio 同步项目到 Github">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -239,17 +206,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/code-analysis/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/android-studio-plugin/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/code-analysis/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/android-studio-plugin/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/code-analysis/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/android-studio-plugin/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -297,7 +264,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/android-screen/"  data-tooltip="Android 屏幕相关">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -305,7 +272,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/atom-0/" data-tooltip="Atom 使用记录">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/android-studio-to-github/" data-tooltip="在 Android Studio 同步项目到 Github">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -315,17 +282,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/code-analysis/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://keng42.github.io/android-studio-plugin/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/code-analysis/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://keng42.github.io/android-studio-plugin/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/code-analysis/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://keng42.github.io/android-studio-plugin/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
