@@ -1,0 +1,407 @@
+/*highlight.js and markdown here*/
+
+img {
+  max-width: 100%;
+}
+
+pre,
+code {
+  font-size: 0.85em;
+  font-family: Consolas, Inconsolata, Courier, monospace;
+}
+
+code {
+  margin: 0 0.15em;
+  padding: 0 0.3em;
+  white-space: pre-wrap;
+  border: 1px solid #EAEAEA;
+  background-color: #F8F8F8;
+  border-radius: 3px;
+  display: inline;
+}
+
+pre {
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+pre code {
+  white-space: pre;
+  overflow: auto;
+  border-radius: 3px;
+  border: 1px solid #CCC;
+  padding: 0.5em 0.7em;
+  display: block !important;
+}
+
+p {
+  margin: 0 0 1.2em 0 !important;
+}
+
+table,
+pre,
+dl,
+blockquote,
+q,
+ul,
+ol {
+  margin: 1.2em 0;
+}
+
+ul,
+ol {
+  padding-left: 2em;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+
+/* Space paragraphs in a list the same as the list itself. */
+
+li p {
+  /* Needs !important to override rule above. */
+  margin: 0.5em 0 !important;
+}
+
+
+/* Smaller spacing for sub-lists */
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin: 0;
+  padding-left: 1em;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 1em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+dl dd {
+  margin: 0 0 1em;
+  padding: 0 1em;
+}
+
+blockquote,
+q {
+  border-left: 4px solid #DDD;
+  padding: 0 1em;
+  color: #777;
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.3em 0 1em;
+  padding: 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.0em;
+  /*border-bottom: 1px solid #ddd;*/
+}
+
+h2 {
+  font-size: 1.6em;
+  /*border-bottom: 1px solid #eee;*/
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+table {
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  font: inherit;
+  border: 0;
+}
+
+tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+table tr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+table tr th,
+table tr td {
+  font-size: 1em;
+  border: 1px solid #CCC;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+table tr th {
+  font-weight: bold;
+  background-color: #F0F0F0;
+}
+
+
+/*highlight.js*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+/*blog*/
+
+html,
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, .87);
+}
+
+header,
+main {
+  width: 978px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  height: 256px;
+  vertical-align: middle;
+}
+
+header .left,
+header .right {
+  padding-top: 84px;
+  float: left;
+}
+
+header .left img {
+  width: 281px;
+  height: 108px;
+}
+
+header .right {
+  padding-left: 60px;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 24px;
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+  margin-bottom: 11px;
+}
+
+.header-desc {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 4px;
+  max-width: 260px;
+}
+
+.divider {
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid #eee;
+}
+
+main .left {
+  width: 660px;
+  float: left;
+}
+
+main .right {
+  float: left;
+}
+
+.title a:hover {
+  text-decoration: none;
+  color: #4184F3;
+}
+
+.title a {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 34px;
+}
+
+.article {
+  padding-bottom: 42px;
+}
+
+.date {
+  font-size: 17px;
+  font-weight: normal;
+  color: #757575;
+  color: rgba(0, 0, 0, .54);
+  line-height: 24px;
+}
+
+.content {
+  color: #212121;
+  color: rgba(0, 0, 0, .87);
+  font-size: 17px;
+  margin: 25px 0 36px 0;
+  line-height: 32px;
+  word-wrap: break-word;
+}
+
+.readmore,
+.content a:hover .toggle {
+  background-color: rgba(0, 0, 0, .08);
+}
+
+.readmore {
+  padding: 4px 8px 4px 8px;
+}
