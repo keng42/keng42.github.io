@@ -12,6 +12,16 @@
   <script src="highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: true,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false
+    });
 
   </script>
 
@@ -34,7 +44,7 @@
             '<div class="date">' +
             date +
             '</div>' +
-            '<div class="content" content="' + item.body + '">' +
+            '<div class="content">' +
             '<a href="javascript:;" class="show-content">' +
             '<div class="toggle">' + '' +
             '<p>' +
@@ -42,13 +52,16 @@
             '</p>' +
             '</div>' +
             '</a>' +
+            '<div style="display:none">' + item.body + '</div>' +
             '</div>' +
             '</div>'
           box.append(html);
         }
         $('.show-content').click(function() {
-          var obj = $(this).parent();
-          obj.html(marked(obj.attr('content')));
+          var obj = $(this).siblings()[0];
+          var par = $(this).parent();
+          console.log(obj);
+          par.html(marked(obj.innerText));
           $('pre code').each(function(i, block) {
             hljs.highlightBlock(block);
           });
@@ -81,25 +94,6 @@
   </div>
   <main>
     <div id="box" class="left">
-      <!-- <div class="article">
-        <div class="title">
-          <a href="#">Focusing on diversity</a>
-        </div>
-        <div class="date">
-          June 30, 2016
-        </div>
-        <div class="content">
-          <a href="#">
-            <div class="toggle">
-              It’s been two years since we first shared our workforce demographics and helped spark a conversation about the need to improve diversity at Google and across the tech industry. Today we’re updating google.com/diversity with our 2015 demographics, and
-              sharing some areas where we’ve seen progress in building a more diverse and inclusive Google.
-              <p>
-                <span class="readmore">read more</span>
-              </p>
-            </div>
-          </a>
-        </div>
-      </div> -->
 
     </div>
     <div class="right">
